@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <!-- Meta Data -->
+    <head>
+        <title>Text Analyzer - Python Project</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script src="https://cdn.tailwindcss.com"></script>
+        <style>
+            /* Custom scrollbar */
+            .scrollbar::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+            }
+
+            .scrollbar::-webkit-scrollbar-track {
+            background: #f1f1f1; /* Light gray track */
+            }
+
+            .scrollbar::-webkit-scrollbar-thumb {
+            background-color: #9ca3af; /* Tailwind gray-400 */
+            border-radius: 9999px;
+            }
+
+            .scrollbar::-webkit-scrollbar-thumb:hover {
+            background-color: #6b7280; /* Tailwind gray-500 */
+            }
+
+            /* Firefox support */
+            .scrollbar {
+            scrollbar-width: thin;
+            scrollbar-color: #9ca3af #f1f1f1;
+            }
+        </style>
+    </head>
+
+    <!-- Page Content -->
+    <body class="bg-gradient-to-br from-slate-50 to-slate-100 min-h-screen overflow-y-hidden">
+
+        <!-- Header / Top-bar  -->
+        <header class="m-4 flex justify-between rounded-2xl border p-3 card shadow-l bg-white  shadow-xl">
+            <div class="flex flex-col">
+                <h1 class="text-2xl font-bold text-transparent bg-gradient-to-br from-purple-500 to-blue-900 bg-clip-text">File Analyzer</h1>
+                <p class="text-xs font-semibold">A Python-based text analysis tool that processes large books or documents.<br>The program supports exporting results to multiple file types (TXT, Json and XML)</p> 
+            </div>
+            <div class="bg-blue-100 ml-5 border rounded-xl p-3 shadow-l">
+                <p class="text-sm font-semibold text-center">Analyzed At:</p>
+                <p class="text-xl font-bold bg-gradient-to-br from-purple-500 to-orange-900 bg-clip-text text-transparent">xxxx-xx-xx:xx:xx:xx</p>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <main class="flex flex-col p-8 scrollbar overflow-y-scroll h-[88vh]">
+
+            <!-- Basic Statistics -->
+            <section class="mb-8">
+
+                <!-- Title -->
+                <h2 class="flex gap-1 text-3xl font-bold text-transparent bg-gradient-to-br from-purple-500 to-blue-900 bg-clip-text">
+                    <span class="bg-blue-600 w-1 border rounded-full"></span>
+                    Basic Statistics
+                </h2>
+
+                <!-- Content -->
+                <div class="mt-3 grid grid-cols-5 gap-5">
+
+                    <!-- Total Lines -->
+                    <div class="border p-5 rounded-3xl bg-white shadow-xl">
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm font-medium">Total Lines</p>
+                            <span class="text-2xl">📄</span>
+                        </div>
+                        <p class="text-3xl font-bold text-transparent bg-gradient-to-br from-yellow-500 to-orange-700 bg-clip-text">0</p>
+                    </div>
+
+                    <!-- Total Words -->
+                    <div class="border p-5 rounded-3xl bg-white  shadow-xl">
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm font-medium">Total Words</p>
+                            <span class="text-2xl">📝</span>
+                        </div>
+                        <p class="text-3xl font-bold text-transparent bg-gradient-to-br from-yellow-500 to-orange-700 bg-clip-text">0</p>
+                    </div>
+
+                    <!-- Unique Words -->
+                    <div class="border p-5 rounded-3xl bg-white  shadow-xl">
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm font-medium">Unique Words</p>
+                            <span class="text-2xl">✨</span>
+                        </div>
+                        <p class="text-3xl font-bold text-transparent bg-gradient-to-br from-yellow-500 to-orange-700 bg-clip-text">0</p>
+                    </div>
+
+                    <!-- Total Characters -->
+                    <div class="border p-5 rounded-3xl bg-white  shadow-xl">
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm font-medium">Total Characters</p>
+                            <span class="text-2xl">🔤</span>
+                        </div>
+                        <p class="text-3xl font-bold text-transparent bg-gradient-to-br from-yellow-500 to-orange-700 bg-clip-text">0</p>
+                    </div>
+
+                    <!-- Characters with no spaces -->
+                    <div class="border p-5 rounded-3xl bg-white  shadow-xl">
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm font-medium">Characters (no spaces)</p>
+                            <span class="text-2xl">🔤</span>
+                        </div>
+                        <p class="text-3xl font-bold text-transparent bg-gradient-to-br from-yellow-500 to-orange-700 bg-clip-text">0</p>
+                    </div>
+
+                    <!-- Sentences -->
+                    <div class="border p-5 rounded-3xl bg-white  shadow-xl">
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm font-medium">Sentences</p>
+                            <span class="text-2xl">💬</span>
+                        </div>
+                        <p class="text-3xl font-bold text-transparent bg-gradient-to-br from-yellow-500 to-orange-700 bg-clip-text">0</p>
+                    </div>
+
+                    <!-- Paragraphs -->
+                    <div class="border p-5 rounded-3xl bg-white  shadow-xl">
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm font-medium">Paragraphs</p>
+                            <span class="text-2xl">📋</span>
+                        </div>
+                        <p class="text-3xl font-bold text-transparent bg-gradient-to-br from-yellow-500 to-orange-700 bg-clip-text">0</p>
+                    </div>
+
+                    <!-- Avg. Words per line -->
+                    <div class="border p-5 rounded-3xl bg-white  shadow-xl">
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm font-medium">Avg. Words per Line</p>
+                            <span class="text-2xl">📊</span>
+                        </div>
+                        <p class="text-3xl font-bold text-transparent bg-gradient-to-br from-yellow-500 to-orange-700 bg-clip-text">0</p>
+                    </div>
+
+                    <!-- Avg. Words per sentence -->
+                    <div class="border p-5 rounded-3xl bg-white  shadow-xl">
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm font-medium">Avg. Words per Sentence</p>
+                            <span class="text-2xl">📊</span>
+                        </div>
+                        <p class="text-3xl font-bold text-transparent bg-gradient-to-br from-yellow-500 to-orange-700 bg-clip-text">0</p>
+                    </div>
+
+                    <!-- Avg. Word Length -->
+                    <div class="border p-5 rounded-3xl bg-white  shadow-xl">
+                        <div class="flex items-center justify-between">
+                            <p class="text-sm font-medium">Avg. Word Length</p>
+                            <span class="text-2xl">📏</span>
+                        </div>
+                        <p class="text-3xl font-bold text-transparent bg-gradient-to-br from-yellow-500 to-orange-700 bg-clip-text">0</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Word Analysis -->
+            <section class="mb-8">
+
+                <!-- Title -->
+                <h2 class="flex gap-1 text-3xl font-bold text-transparent bg-gradient-to-br from-purple-500 to-blue-900 bg-clip-text">
+                    <span class="bg-blue-600 w-1 border rounded-full"></span>
+                    Word Analysis
+                </h2>
+
+                <!-- Content -->
+                <div class="grid grid-cols-2 gap-5 mt-3">
+
+                    <!-- Top 10 -->
+                    <div class="border rounded-2xl p-5 shadow-sm bg-white  shadow-xl">
+                        <h3 class="text-xl font-semibold mb-2 text-center">
+                            <span class="text-2xl">🏆</span>
+                            Top 10 - Common Used Words
+                        </h3>
+                        <div class="border"></div>
+                        <div class="space-y-3" id="Top-10-Common-Used-Words">
+                            <!-- Content Here will be Pasted using Javascript -->
+                        </div>
+                    </div>
+
+                    <!-- Read Ability & Words Analysis -->
+                    <div class="flex flex-col justify-between gap-5">
+
+                        <!-- Read Ability Analysis -->
+                        <div class="border rounded-2xl p-5 bg-white  shadow-xl">
+
+                            <!-- Title -->
+                            <h3 class="text-xl font-semibold">
+                                <span class="text-2xl">📜</span>
+                                Read Ability Analysis
+                            </h3>
+
+                            <!-- Separator -->
+                            <div class="mt-3 border rounded-full"></div>
+
+                            <!-- Content -->
+                            <div class="mt-3">
+                                <div class="flex flex-col">
+
+                                    <!-- Read Ability Score -->
+                                    <div class="flex justify-between">
+                                        <h4 class="text-sm font-medium">Read Ability Score:</h4>
+                                        <span class="text-sm font-medium">0.0</span>
+                                    </div>
+                                    <div class="mt-2 h-2 border bg-blue-200 rounded-full w-full">
+                                        <div class="h-2 bg-gradient-to-br from-purple-500 to-blue-900 rounded-full transition-all" style="width: 10%;"></div>
+                                    </div>
+
+                                    <!-- Read Ability Level -->
+                                    <div class="mt-5">
+                                        <h4 class="text-sm font-semibold">Read Ability Level:</h4>
+                                        <div class="mt-2 border rounded-2xl p-5 bg-blue-100">
+                                            <p class="text-2xl font-bold text-center text-transparent bg-gradient-to-br from-orange-500 to-red-500 bg-clip-text">UNKNOWN</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Word Analysis -->
+                        <div class="border rounded-2xl p-5 bg-white  shadow-xl">
+                            
+                            <!-- Title -->
+                            <h3 class="text-xl font-semibold">
+                                <span class="text-2xl">✍️</span>
+                                Word Analysis
+                            </h3>
+
+                            <!-- Content -->
+                            <div class="mt-3 border-t-2 space-y-4 ">
+
+                                <!-- Longest Word -->
+                                <div class="mt-2">
+                                    <p class="text-sm font-medium mb-1">Longest Word</p>
+                                    <p class="text-lg font-mono font-bold break-all">-</p>
+                                    <p class="text-xs mt-1 font-medium text-gray-400">0 Characters</p>
+                                </div>
+
+                                <!-- Shortest Word -->
+                                <div class="border-t  pt-2">
+                                    <p class="text-sm font-medium mb-1">Shortest Word</p>
+                                    <p class="text-lg font-mono font-bold break-all">-</p>
+                                    <p class="text-xs mt-1 font-medium text-gray-400">0 Characters</p>
+                                </div>
+
+                                <!-- Words Appearing Once -->
+                                <div class="border-t pt-2">
+                                    <p class="text-sm font-medium mb-1">Words Appearing Once</p>
+                                    <p class="text-xs font-bold mt-1">0</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Sentence Analysis -->
+            <section class="mb-8">
+
+                <!-- Title -->
+                <h2 class="flex gap-1 text-3xl font-bold text-transparent bg-gradient-to-br from-purple-500 to-blue-900 bg-clip-text">
+                    <span class="bg-blue-600 w-1 border rounded-full"></span>
+                    Sentence Analysis
+                </h2>
+
+                <!-- Content -->
+                <div class="mt-3 grid grid-cols-2 gap-4">
+
+                    <!-- Sentence Length Distribution-->
+                    <div class="border rounded-2xl p-5 bg-white shadow-xl">
+                        <h3 class="text-xl font-semibold mb-2 text-center">
+                            <span class="text-2xl">🏆</span>
+                            Top 5 <br> Sentence length distribution
+                        </h3>
+                        <div class="border"></div>
+                        <div class="space-y-3" id="Top-10-Common-Used-Letters">
+                            <!-- Content Here will be Pasted using Javascript -->
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-5">
+                        <!-- Longest Sentence -->
+                        <div class="bg-white border rounded-2xl p-5 shadow-xl">
+
+                            <!-- Title -->
+                            <h3 class="text-xl font-semibold">
+                                <span class="text-xl">📏</span>
+                                Longest Sentence
+                            </h3>
+
+                            <!-- Content -->
+                            <div class="mt-3 bg-blue-100 rounded-2xl p-4 mb-3">
+                                <p class="text-sm text-start leading-relaxed">-</p>
+                            </div>
+                            <p class="text-sm text-gray-400 font-semibold"><span class="bg-gradient-to-br from-blue-500 to-purple-700 bg-clip-text text-transparent text-m font-bold">0</span> words</p>
+                        </div>
+
+                        <!-- Shortest Sentence -->
+                        <div class="bg-white border rounded-2xl p-5 shadow-xl">
+
+                            <!-- Title -->
+                            <h3 class="text-xl font-semibold">
+                                <span class="text-xl">🤏</span>
+                                Shortest Sentence
+                            </h3>
+                            
+                            <!-- Content -->
+                            <div class="mt-3 bg-blue-100 rounded-2xl p-4 mb-3">
+                                <p class="text-sm text-start leading-relaxed">-</p>
+                            </div>
+                            <p class="text-sm text-gray-400 font-semibold"><span class="bg-gradient-to-br from-blue-500 to-purple-700 bg-clip-text text-transparent text-m font-bold">0</span> words</p>
+                        </div>
+                    </div>
+
+
+                </div>
+            </section>
+
+            <!-- Character Analysis -->
+            <section class="mb-8">
+
+                <!-- Title -->
+                <h2 class="flex gap-1 text-3xl font-bold text-transparent bg-gradient-to-br from-purple-500 to-blue-900 bg-clip-text">
+                    <span class="bg-blue-600 w-1 border rounded-full"></span>
+                    Character Analysis
+                </h2>
+
+                <!-- Content -->
+                <div class="mt-3 grid grid-cols-2 gap-4">
+                    
+                    <!-- Top 10 - Common Used Letters -->
+                    <div class="border rounded-2xl p-5 bg-white shadow-xl">
+                        <h3 class="text-xl font-semibold mb-2 text-center">
+                            <span class="text-2xl">🏆</span>
+                            Top 10 - Common Used Letters
+                        </h3>
+                        <div class="border"></div>
+                        <div class="space-y-3" id="Top-10-Common-Used-Letters">
+                            <!-- Content Here will be Pasted using Javascript -->
+                        </div>
+                    </div>
+
+                    <!-- Character Analysis -->
+                    <div class="border rounded-2xl p-5 shadow-xl bg-white">
+                        <h3 class="text-xl font-bold">
+                            <span>🔤</span>
+                            Character Analysis
+                        </h3>
+                        <div class="flex flex-col mt-3 border-t space-y-4">
+                            <div class="mt-3">
+                                <div class="flex justify-between">
+                                    <p class="text-sm font-medium">Digits</p>
+                                    <p class="text-sm font-bold">0.0%</p>
+                                </div>
+                                <div class="mt-2 h-2 border bg-blue-200 rounded-full w-full">
+                                    <div class="h-2 bg-gradient-to-br from-purple-500 to-blue-900 rounded-full transition-all" style="width: 10%;"></div>
+                                </div>
+                                <p class="text-xs mt-1 font-medium text-gray-400">0 Digits</p>
+                            </div>
+                            <div class="mt-3 border-t pt-2">
+                                <div class="flex justify-between">
+                                    <p class="text-sm font-medium">Letters</p>
+                                    <p class="text-sm font-bold">0.0%</p>
+                                </div>
+                                <div class="mt-2 h-2 border bg-blue-200 rounded-full w-full">
+                                    <div class="h-2 bg-gradient-to-br from-purple-500 to-blue-900 rounded-full transition-all" style="width: 10%;"></div>
+                                </div>
+                                <p class="text-xs mt-1 font-medium text-gray-400">0 Letters</p>
+                            </div>
+                            <div class="mt-3 border-t pt-2">
+                                <div class="flex justify-between">
+                                    <p class="text-sm font-medium">Spaces</p>
+                                    <p class="text-sm font-bold">0.0%</p>
+                                </div>
+                                <div class="mt-2 h-2 border bg-blue-200 rounded-full w-full">
+                                    <div class="h-2 bg-gradient-to-br from-purple-500 to-blue-900 rounded-full transition-all" style="width: 10%;"></div>
+                                </div>
+                                <p class="text-xs mt-1 font-medium text-gray-400">0 Spaces</p>
+                            </div>
+                            <div class="mt-3 border-t pt-2">
+                                <div class="flex justify-between">
+                                    <p class="text-sm font-medium">Punctuations</p>
+                                    <p class="text-sm font-bold">0.0%</p>
+                                </div>
+                                <div class="mt-2 h-2 border bg-blue-200 rounded-full w-full">
+                                    <div class="h-2 bg-gradient-to-br from-purple-500 to-blue-900 rounded-full transition-all" style="width: 10%;"></div>
+                                </div>
+                                <p class="text-xs mt-1 font-medium text-gray-400">0 Punctuations</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <footer class="p-3 border bg-white rounded-3xl">
+                <p class="text-center text-sm font-semibold text-gray-500">&copy 2025 File Analyzer by Xeinostorm & 3ternity4evaa. <br>All Rights Reserved!</p>
+            </footer>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,74 @@
+{
+    "file_name": "real_test",
+    "file_path": "./import/real_test.txt",
+    "file_size": "1.13 MB",
+    "file_analyzed_at": "2025-11-06 19:25",
+    "basic_statistics": {
+        "total_number_of_lines": 22060,
+        "total_number_of_paragraphs": 3967,
+        "total_number_of_sentences": 15010,
+        "total_number_of_words": 203481,
+        "total_number_of_unique_words": 10536,
+        "total_number_of_characters": 1135108,
+        "total_number_of_characters_without_spaces": 949456,
+        "average_words_per_line": 9.2,
+        "average_word_length": 4.3,
+        "average_words_per_sentence": 13.6
+    },
+    "word_analysis": {
+        "top_10_common_words": {
+            "the": 7799,
+            "and": 6903,
+            "to": 5261,
+            "he": 4650,
+            "a": 4565,
+            "i": 3936,
+            "of": 3805,
+            "you": 3803,
+            "in": 3184,
+            "it": 2971
+        },
+        "longest_word_text": "grey-and-rainbow-coloured",
+        "longest_word_length": 25,
+        "shortest_word_text": "a",
+        "shortest_word_length": 1,
+        "number_of_words_appearing_only_once": 4634,
+        "read_ability_score": 38,
+        "read_ability_level": "Medium"
+    },
+    "sentence_analysis": {
+        "longest_sentence_text": "Simply because a poor student, unhinged by poverty and hypochondria, on the eve of a severe delirious illness (note that), suspicious, vain, proud, who has not seen a soul to speak to for six months, in rags and in boots without soles, has to face some wretched policemen and put up with their insolence; and the unexpected debt thrust under his nose, the I.O.U. presented by Tchebarov, the new paint, thirty degrees Reaumur and a stifling atmosphere, a crowd of people, the talk about the murder of a person where he had been just before, and all that on an empty stomach--he might well have a fainting fit!",
+        "longest_sentence_length": 108,
+        "shortest_sentence_text": "Yes.",
+        "shortest_sentence_length": 1,
+        "sentence_length_distribution": {
+            "5": 1068,
+            "6": 982,
+            "4": 973,
+            "7": 935,
+            "8": 838
+        }
+    },
+    "character_analysis": {
+        "total_number_of_letters": 874218,
+        "total_number_of_letters_in_percent": "77.02%",
+        "total_number_of_digits": 30,
+        "total_number_of_digits_in_percent": "0.0%",
+        "total_number_of_spaces": 185652,
+        "total_number_of_spaces_in_percent": "16.36%",
+        "total_number_of_punctuations": 40924,
+        "total_number_of_punctuations_in_percent": "3.61%",
+        "top_10_common_letters": {
+            "e": 103215,
+            "t": 79319,
+            "a": 73040,
+            "o": 70887,
+            "n": 62120,
+            "i": 61534,
+            "h": 55491,
+            "s": 52754,
+            "r": 47324,
+            "d": 38670
+        }
+    }
+}

@@ -1,0 +1,94 @@
+
+████████╗███████╗██╗  ██╗████████╗     █████╗ ███╗   ██╗ █████╗ ██╗  ██╗   ██╗███████╗██╗███████╗
+╚══██╔══╝██╔════╝╚██╗██╔╝╚══██╔══╝    ██╔══██╗████╗  ██║██╔══██╗██║  ╚██╗ ██╔╝██╔════╝██║██╔════╝
+   ██║   █████╗   ╚███╔╝    ██║       ███████║██╔██╗ ██║███████║██║   ╚████╔╝ ███████╗██║███████╗
+   ██║   ██╔══╝   ██╔██╗    ██║       ██╔══██║██║╚██╗██║██╔══██║██║    ╚██╔╝  ╚════██║██║╚════██║
+   ██║   ███████╗██╔╝ ██╗   ██║       ██║  ██║██║ ╚████║██║  ██║███████╗██║   ███████║██║███████║
+   ╚═╝   ╚══════╝╚═╝  ╚═╝   ╚═╝       ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝╚═╝   ╚══════╝╚═╝╚══════╝
+
+—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+Text Analysis - Python Project
+A Python-based text analysis tool that processes large books or documents.
+The program supports exporting results to multiple file types (TXT, Json and XML)
+
+—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+File Selection - Select a .txt file from the input directory
+File name: real_test
+File path: ./import/real_test.txt
+File Size: 1.13 MB
+Analyzed At: 2025-11-06 10:33
+
+————————————————————————————————————————————————
+
+————————————— [ Basic Statistics ] —————————————
+
+Number of lines: 22060
+Number of paragraphs: 3967
+Number of sentences: 15010
+Number of words: 203481
+Number of unique words: 10536
+Number of characters (with spaces): 1135108
+Number of characters (without spaces): 949456
+Average words per line: 9.2
+Average word length: 4.3 characters
+Average words per sentence: 13.6
+
+————————————— [ Word Analysis ] —————————————
+
+Word Statistics
+———————————————————
+Longest word: grey-and-rainbow-coloured
+Longest word length: 25 character(s)
+Shortest word: a
+Shortest word length: 1 character(s)
+Words appearing only once: 4634
+Read ability score: 38
+Read ability level: Medium
+
+            Top 10 Most Common Words
+[————————————————————————————————————————————————————]
+   1. the                                 7799
+   2. and                                 6903
+   3. to                                  5261
+   4. he                                  4650
+   5. a                                   4565
+   6. i                                   3936
+   7. of                                  3805
+   8. you                                 3803
+   9. in                                  3184
+  10. it                                  2971
+
+————————————— [ Sentence Analysis ] —————————————
+Shortest sentence length: 1 word(s)
+Longest sentence length: 108 word(s)
+Shortest sentence text: Yes.
+Longest sentence text: Simply because a poor student, unhinged by poverty and hypochondria, on the eve of a severe delirious illness (note that), suspicious, vain, proud, who has not seen a soul to speak to for six months, in rags and in boots without soles, has to face some wretched policemen and put up with their insolence; and the unexpected debt thrust under his nose, the I.O.U. presented by Tchebarov, the new paint, thirty degrees Reaumur and a stifling atmosphere, a crowd of people, the talk about the murder of a person where he had been just before, and all that on an empty stomach--he might well have a fainting fit!
+
+            Top 5 Sentence Length Frequency
+[————————————————————————————————————————————————————]
+   1. 5 Word(s)                            1068
+   2. 6 Word(s)                            982
+   3. 4 Word(s)                            973
+   4. 7 Word(s)                            935
+   5. 8 Word(s)                            838
+
+————————————— [ Character Analysis ] —————————————
+Letters: 874218 (77.02%)
+Digits: 30 (0.0%)
+Spaces: 185652 (16.36%)
+Punctuation: 40924 (3.61%)
+
+            Top 10 Most Common Letters
+[————————————————————————————————————————————————————]
+   1. e                                   103215
+   2. t                                   79319
+   3. a                                   73040
+   4. o                                   70887
+   5. n                                   62120
+   6. i                                   61534
+   7. h                                   55491
+   8. s                                   52754
+   9. r                                   47324
+  10. d                                   38670

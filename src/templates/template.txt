@@ -1,0 +1,80 @@
+
+████████╗███████╗██╗  ██╗████████╗     █████╗ ███╗   ██╗ █████╗ ██╗  ██╗   ██╗███████╗██╗███████╗
+╚══██╔══╝██╔════╝╚██╗██╔╝╚══██╔══╝    ██╔══██╗████╗  ██║██╔══██╗██║  ╚██╗ ██╔╝██╔════╝██║██╔════╝
+   ██║   █████╗   ╚███╔╝    ██║       ███████║██╔██╗ ██║███████║██║   ╚████╔╝ ███████╗██║███████╗
+   ██║   ██╔══╝   ██╔██╗    ██║       ██╔══██║██║╚██╗██║██╔══██║██║    ╚██╔╝  ╚════██║██║╚════██║
+   ██║   ███████╗██╔╝ ██╗   ██║       ██║  ██║██║ ╚████║██║  ██║███████╗██║   ███████║██║███████║
+   ╚═╝   ╚══════╝╚═╝  ╚═╝   ╚═╝       ╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝  ╚═╝╚══════╝╚═╝   ╚══════╝╚═╝╚══════╝
+
+—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+Text Analysis - Python Project
+A Python-based text analysis tool that processes large books or documents.
+The program supports exporting results to multiple file types (TXT, Json and XML)
+
+—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
+
+File Selection - Select a .txt file from the input directory
+File name: {file_name}
+File path: {file_path}
+File Size: {file_size}
+Analyzed At: {file_analyzed_at}
+
+————————————————————————————————————————————————
+
+<start_basic_statistics>
+————————————— [ Basic Statistics ] —————————————
+
+Number of lines: {total_number_of_lines}
+Number of paragraphs: {total_number_of_paragraphs}
+Number of sentences: {total_number_of_sentences}
+Number of words: {total_number_of_words}
+Number of unique words: {total_number_of_unique_words}
+Number of characters (with spaces): {total_number_of_characters}
+Number of characters (without spaces): {total_number_of_characters_without_spaces}
+Average words per line: {average_words_per_line}
+Average word length: {average_word_length} characters
+Average words per sentence: {average_words_per_sentence}
+</end_basic_statistics>
+
+<start_word_analysis>
+————————————— [ Word Analysis ] —————————————
+
+Word Statistics
+———————————————————
+Longest word: {longest_word_text}
+Longest word length: {longest_word_length} character(s)
+Shortest word: {shortest_word_text}
+Shortest word length: {shortest_word_length} character(s)
+Words appearing only once: {number_of_words_appearing_only_once}
+Read ability score: {read_ability_score}
+Read ability level: {read_ability_level}
+
+            Top 10 Most Common Words
+[————————————————————————————————————————————————————]
+{top_10_common_words}
+</end_word_analysis>
+
+<start_sentence_analysis>
+————————————— [ Sentence Analysis ] —————————————
+Shortest sentence length: {shortest_sentence_length} word(s)
+Longest sentence length: {longest_sentence_length} word(s)
+Shortest sentence text: {shortest_sentence_text}
+Longest sentence text: {longest_sentence_text}
+
+            Top 5 Sentence Length Frequency
+[————————————————————————————————————————————————————]
+{sentence_length_distribution}
+</end_sentence_analysis>
+
+<start_sentence_analysis>
+————————————— [ Character Analysis ] —————————————
+Letters: {total_number_of_letters} ({total_number_of_letters_in_percent})
+Digits: {total_number_of_digits} ({total_number_of_digits_in_percent})
+Spaces: {total_number_of_spaces} ({total_number_of_spaces_in_percent})
+Punctuation: {total_number_of_punctuations} ({total_number_of_punctuations_in_percent})
+
+            Top 10 Most Common Letters
+[————————————————————————————————————————————————————]
+{top_10_common_letters}
+</end_character_analysis>
