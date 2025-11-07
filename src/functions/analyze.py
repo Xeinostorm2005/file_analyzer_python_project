@@ -70,30 +70,36 @@ def analyze(path):
     current_sentence = ''
     sentence_words_count_frequency = {}
 
-
-# TODO: ADD COMMENTS
-
-
+    # Open selected file then analyzed it
     with open(path, "r", encoding = "utf-8") as file:
         
-
+        # Reads line for line
         for current_line in file:
+            
+            # Necessary stuff
             lines += 1
             current_line_length = len(current_line)
 
+            # Checks if line is empty then increases the counter
             if current_line == "\n":
                 empty_line_counter += 1
+
+            # Checks if the line isn't empty and if the counter is more than 1
             elif current_line != "\n" and empty_line_counter >= 1:
                 empty_line_counter = 0
                 paragraphs += 1
 
+            # Read character by character from line
             for character_index, current_character in enumerate(current_line):
 
                 # ======================================== [ Word Analysis ] ========================================
-               
+                # Checks if lowered character is in alpha list and checks if its - or _ and the line isn't empty
+                # Adds builds up current_word by adding a character
                 if (current_character.lower() in alpha or current_character in ["-", "_"]) and current_line != "\n":
                     current_word += current_character.lower()
 
+                # Checks if current character is space or line end and that current_word isn't empty
+                # Updates results and resets current word
                 if current_character in [" ", "\n"] and current_word != "":
 
                     words += 1
@@ -126,6 +132,7 @@ def analyze(path):
                     else:
                         word_length_frequency[word_length_in_character] = 1
 
+                    # Resets current_word
                     current_word = ""
 
                 # ======================================== [ Sentence Analysis ] ========================================
@@ -187,43 +194,53 @@ def analyze(path):
                 
                 characters += 1
 
+                # Checks if character isn't a space then updates results
                 if current_character != " ":
                     characters_no_spaces += 1
 
+                # Checks if character is a letter by lowering it then updating results
                 if current_character.lower() in alpha:
                     letters += 1
                     if current_character.lower() not in unique_letters:
                         unique_letters[current_character.lower()] = 1
                     else:
                         unique_letters[current_character.lower()] += 1
+
+                # Checks if character is a digit/number
                 if current_character.isdigit():
                     digits += 1
                 
+                # Checks if character is a space
                 if current_character == " ":
                     spaces += 1
 
+                # Checks if its a punctuation
                 if current_character in punctuations_lst:
                     punctuations += 1
 
-        # Basic Statistics
+        # ======= [ Basic Statistics ] =======
         unique_words = len(unique_word_frequency)
         words_per_line = round(words / lines, 1)
         word_length = round(letters / words, 1)
         word_per_sentence = round(words / sentences, 1)
 
 
-        # Word Analysis
+        # ======= [ Word Analysis ] =======
+        # Gets Sorted top 10 entries
         top_10_words = get_top_entries_from_dictionary(
             unique_word_frequency,
             max_entries = 10,
             sort_descending = True
         )
-        
+
+        # Sorted dictionary from lowest to highest
         sorted_words = sort_dictionary_by_value(
             unique_word_frequency
             
         )
 
+        # A method to calculate how many words appearing only once
+        # By using the sorted dictionary
         for key in sorted_words:
             value = sorted_words[key]
 
@@ -231,6 +248,7 @@ def analyze(path):
                 break
             words_appearing_once += 1
 
+        # Stores read_ability analysis
         read_ability_score, read_ability_level = LiX_Score(
             total_number_of_words = words,
             total_number_of_sentences = sentences,
@@ -238,19 +256,20 @@ def analyze(path):
         )    
             
 
-        # Sentence Analysis
+        # ======= [ Sentence Analysis ] =======
         sentence_length_distribution = get_top_entries_from_dictionary(
             sentence_words_count_frequency,
             max_entries = 5,
             sort_descending = True
         )
         
-        # Character Analysis
+        # =======[ Character Analysis ] =======
+        # Stores rounded results
         letters_percent = round(letters / characters * 100, 2) 
         digits_percent = round(digits / characters * 100, 2)
         spaces_percent = round(spaces / characters * 100, 2)
         punctuations_percent = round(punctuations / characters * 100, 2)
-        
+        # Gets sorted top 10 entries 
         top_10_letters = get_top_entries_from_dictionary(
             unique_letters,
             max_entries = 10,
@@ -258,53 +277,53 @@ def analyze(path):
         )
         
     
-
+    # The final format for the results
     data = {
         "file_name": file_name,
         "file_path": path,
         "file_size": format_file_size(file_size),
         "file_analyzed_at": analyzed_At,
         "basic_statistics": {
-            "total_number_of_lines": lines, # Complete
-            "total_number_of_paragraphs": paragraphs, # Completed
-            "total_number_of_sentences": sentences, # Easy-Mid
-            "total_number_of_words": words, # RIP
-            "total_number_of_unique_words": unique_words, # RIP
-            "total_number_of_characters": characters,  # Complete
-            "total_number_of_characters_without_spaces": characters_no_spaces, # Complete
-            "average_words_per_line": words_per_line, # RIP
-            "average_word_length": word_length, # RIP
-            "average_words_per_sentence": word_per_sentence # RIP
+            "total_number_of_lines": lines,
+            "total_number_of_paragraphs": paragraphs,
+            "total_number_of_sentences": sentences,
+            "total_number_of_words": words,
+            "total_number_of_unique_words": unique_words,
+            "total_number_of_characters": characters, 
+            "total_number_of_characters_without_spaces": characters_no_spaces,
+            "average_words_per_line": words_per_line,
+            "average_word_length": word_length,
+            "average_words_per_sentence": word_per_sentence
         },
         "word_analysis": {
-            "top_10_common_words": top_10_words, # RIP
+            "top_10_common_words": top_10_words,
             "word_length_distribution": sort_dictionary_by_keys(word_length_frequency),
-            "longest_word_text": longest_word, # RIP
-            "longest_word_length": longest_word_length, # RIP
-            "shortest_word_text": shortest_word, # RIP
-            "shortest_word_length": shortest_word_length, # RIP
-            "number_of_words_appearing_only_once": words_appearing_once, # RIP
-            "read_ability_score": read_ability_score, # RIP
-            "read_ability_level": read_ability_level # RIP
+            "longest_word_text": longest_word,
+            "longest_word_length": longest_word_length,
+            "shortest_word_text": shortest_word,
+            "shortest_word_length": shortest_word_length,
+            "number_of_words_appearing_only_once": words_appearing_once,
+            "read_ability_score": read_ability_score,
+            "read_ability_level": read_ability_level
         },
         "sentence_analysis": {
-            "longest_sentence_text": longest_sentence_text, # Easy - Mid
-            "longest_sentence_length": longest_sentence_word_count, # Easy - Mid
-            "shortest_sentence_text": shortest_sentence_text, # Easy - Mid
-            "shortest_sentence_length": shortest_sentence_word_count, # Easy - Mid
-            "sentence_length_distribution": sentence_length_distribution, # Easy - Mid
+            "longest_sentence_text": longest_sentence_text,
+            "longest_sentence_length": longest_sentence_word_count,
+            "shortest_sentence_text": shortest_sentence_text,
+            "shortest_sentence_length": shortest_sentence_word_count,
+            "sentence_length_distribution": sentence_length_distribution,
             "sentence_length_frequency": sort_dictionary_by_keys(sentence_words_count_frequency)
         },
         "character_analysis": {
-            "total_number_of_letters": letters, # Complete
-            "total_number_of_letters_in_percent": f"{letters_percent}%", # Completed
-            "total_number_of_digits": digits, # Complete
-            "total_number_of_digits_in_percent": f"{digits_percent}%", # Completed
-            "total_number_of_spaces": spaces, # Complete
-            "total_number_of_spaces_in_percent": f"{spaces_percent}%", # Completed
-            "total_number_of_punctuations": punctuations, # Complete
-            "total_number_of_punctuations_in_percent": f"{punctuations_percent}%", # Completed
-            "top_10_common_letters": top_10_letters, # Completed
+            "total_number_of_letters": letters,
+            "total_number_of_letters_in_percent": f"{letters_percent}%",
+            "total_number_of_digits": digits,
+            "total_number_of_digits_in_percent": f"{digits_percent}%",
+            "total_number_of_spaces": spaces,
+            "total_number_of_spaces_in_percent": f"{spaces_percent}%",
+            "total_number_of_punctuations": punctuations,
+            "total_number_of_punctuations_in_percent": f"{punctuations_percent}%",
+            "top_10_common_letters": top_10_letters,
         }
     }
 

@@ -62,13 +62,15 @@ def file_selection() -> str:
             if chosen < 0 or chosen > len(txt_files):
                 raise ValueError
             
+            # Handle response
             match chosen:
                 case 0:
                     return 'exit'
                 case _:
                     analyze(f'./import/{txt_files[chosen - 1]}')
                     return 'completed'
-
+        
+        # Handles specific errors
         except ValueError:
             print(color(message["errors"]['invalid_option'], fg="255; 0; 0"))
 
