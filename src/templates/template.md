@@ -11,7 +11,7 @@
 ## 🧠 Text Analysis – Python Project
 
 A Python-based text analysis tool that processes large books or documents.  
-Supports exporting results to multiple file types: **TXT**, **JSON**, and **XML**.
+Supports exporting results to multiple file types: **TXT**, **JSON**, **HTML** and **XML**.
 
 ---
 

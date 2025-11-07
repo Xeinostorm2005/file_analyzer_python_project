@@ -5,7 +5,7 @@ import json
 
 
 # Import from /src
-from src.functions.common import format_file_size, get_top_entries_from_dictionary, remove_punctuations, sort_dictionary_by_value, LiX_Score
+from src.functions.common import format_file_size, get_top_entries_from_dictionary, remove_punctuations, sort_dictionary_by_value, LiX_Score, sort_dictionary_by_keys
 
 def analyze(path):
 
@@ -60,6 +60,7 @@ def analyze(path):
     file_size = os.path.getsize(path)
     file_name = path.replace('./import/', '').replace('.txt','')
     empty_line_counter = 0
+    word_length_frequency = {}
 
     # Punctuations that marks the ends and starts of a sentence
     sentence_ending_punctuation = ["!", "?", ".", "\u201d", "\u2019"] # ” ’
@@ -117,6 +118,13 @@ def analyze(path):
                         unique_word_frequency[current_word] += 1
                     else:
                         unique_word_frequency[current_word] = 1
+                    
+                    # Updates/Adds word length frequency
+                    word_length_in_character = f'{current_word_length} character(s)'
+                    if word_length_in_character in word_length_frequency:
+                        word_length_frequency[word_length_in_character] += 1
+                    else:
+                        word_length_frequency[word_length_in_character] = 1
 
                     current_word = ""
 
@@ -166,10 +174,11 @@ def analyze(path):
                             shortest_sentence_text = current_sentence
 
                         # Adds/Updates word count frequency in a sentence
-                        if words_in_current_sentence_count in sentence_words_count_frequency:
-                            sentence_words_count_frequency[words_in_current_sentence_count] += 1 
+                        sentence_length_in_words = f'{words_in_current_sentence_count} word(s)'
+                        if sentence_length_in_words in sentence_words_count_frequency:
+                            sentence_words_count_frequency[sentence_length_in_words] += 1 
                         else:
-                            sentence_words_count_frequency[words_in_current_sentence_count] = 1 
+                            sentence_words_count_frequency[sentence_length_in_words] = 1 
 
                         # Resets current_sentence for next sentence
                         current_sentence = ""
@@ -269,6 +278,7 @@ def analyze(path):
         },
         "word_analysis": {
             "top_10_common_words": top_10_words, # RIP
+            "word_length_distribution": sort_dictionary_by_keys(word_length_frequency),
             "longest_word_text": longest_word, # RIP
             "longest_word_length": longest_word_length, # RIP
             "shortest_word_text": shortest_word, # RIP
@@ -282,7 +292,8 @@ def analyze(path):
             "longest_sentence_length": longest_sentence_word_count, # Easy - Mid
             "shortest_sentence_text": shortest_sentence_text, # Easy - Mid
             "shortest_sentence_length": shortest_sentence_word_count, # Easy - Mid
-            "sentence_length_distribution": sentence_length_distribution # Easy - Mid
+            "sentence_length_distribution": sentence_length_distribution, # Easy - Mid
+            "sentence_length_frequency": sort_dictionary_by_keys(sentence_words_count_frequency)
         },
         "character_analysis": {
             "total_number_of_letters": letters, # Complete

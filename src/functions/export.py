@@ -218,10 +218,7 @@ def rewrite_top_entries(dictionary: dict) -> str:
     for i, key in enumerate(dictionary):
         
         # Checks if the key is a digit. This is used to know if the dictionary is for sentence_length_distribution
-        if key.isdigit():
-            lst.append(f"{i +1:>4}. {f"{key} Word(s)":<35}  {dictionary[key]}")
-        else:
-            lst.append(f"{i +1:>4}. {key:<35} {dictionary[key]}")
+        lst.append(f"{i +1:>4}. {key:<35} {dictionary[key]}")
     
     # Converts the list to a string and each value ends with \n then returns it
     return "\n".join(lst) # -> "1. ~~~\n2. ~~~~\n" 

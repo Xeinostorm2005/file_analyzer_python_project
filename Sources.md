@@ -31,3 +31,6 @@ https://stackoverflow.com/questions/74589665/how-to-print-rgb-colour-to-the-term
   
 - Website that converts typescript to python (Who doesn't love that?)
 - https://www.codeconvert.ai/typescript-to-python-converter
+
+- How to rotate x-axel labels for each key
+- https://matplotlib.org/stable/gallery/ticks/ticklabels_rotation.html

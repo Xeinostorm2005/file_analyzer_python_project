@@ -3,7 +3,7 @@
 from src.functions.common import color
 from src.functions.common import branding
 from src.functions.export import export_results, export_results_in_terminal
-
+from src.functions.visualize import visualize
 
 
 message = {
@@ -83,7 +83,8 @@ def results(option):
             
             match chosen:
                 case 1:
-                    pass # TODO: Showcase the graph - matplotlib
+                    category = options[option].replace(" ", "_").lower()
+                    visualize(category) # TODO: Showcase the graph - matplotlib
                 case 2:
                     category = options[option].replace(" ", "_").lower()
                     export_results_in_terminal(category) # TODO: Print results in terminal

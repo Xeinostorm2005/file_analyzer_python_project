@@ -106,6 +106,27 @@ def sort_dictionary_by_value(dictionary: dict, descending: bool = False) -> dict
     # Converts the sorted list of tuples to dictionary then returns the dictionary
     return dict(dictionary_items_list)
 
+# A function that sorts dictionary by key, in descending or ascending order
+def sort_dictionary_by_keys(dictionary: dict, descending: bool = False) -> dict:
+    
+    # Returns the key from an item in the dictionary.
+    def get_key_for_sorting(item): # item = (key, value)
+        key = item[0]
+        keys = key.split(" ")
+        if len(keys) > 1 and keys[0].isdigit():
+            return int(keys[0])
+        else:
+            return key
+    # Converts dictionary to tuples in tuple, then converts to list of tuples
+    # Dictionary {"...": "..."} -> Tuples inside a tuple ((..., ...), (..., ...)) -> Tuples inside a list [(..., ...), (..., ...)]
+    dictionary_items_list = list(dictionary.items()) 
+
+    # Sorts the list by using the sort helper (BUILT-IN)
+    dictionary_items_list.sort(key=get_key_for_sorting, reverse=descending)
+    
+    # Converts the sorted list of tuples to dictionary then returns the dictionary
+    return dict(dictionary_items_list)
+
 
 
 # A function that removes punctuations from a text
@@ -176,3 +197,40 @@ def format_file_size(size: float) -> str:
 
     # Return file size with a suitable unit
     return formatted
+
+# A function that edit a string
+def edit_text(text: str, remove: str, replace: str, to: str, all_lower: bool = False, all_upper: bool = False, capitalize: bool = False, capitalize_words: bool = False) -> str:
+    
+    # Removes a specific line from a text
+    text = text.replace(remove, '')
+
+    # Replaces a specific line from a text
+    text = text.replace(replace, to)
+
+    # Lowers all characters
+    if all_lower:
+        text = text.lower()
+    
+    # Capitalize all characters
+    elif all_upper:
+        text = text.upper()
+    
+    # Capitalize word
+    if capitalize:
+        text = text.capitalize()
+    
+    # Capitalize all words
+    if capitalize_words:
+
+        # Stores words
+        words = text.split(" ")
+        text = ''
+        
+        # Re-builds the text with capitalized words
+        for word in words:
+            if text == '':
+                text = f' {word.capitalize()}'
+            else:
+                text += f' {word.capitalize()}'
+
+    return text

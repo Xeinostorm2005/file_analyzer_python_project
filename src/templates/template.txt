@@ -10,7 +10,7 @@
 
 Text Analysis - Python Project
 A Python-based text analysis tool that processes large books or documents.
-The program supports exporting results to multiple file types (TXT, Json and XML)
+The program supports exporting results to multiple file types (TXT, JSON, HTML and XML)
 
 —————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -67,7 +67,7 @@ Longest sentence text: {longest_sentence_text}
 {sentence_length_distribution}
 </end_sentence_analysis>
 
-<start_sentence_analysis>
+<start_character_analysis>
 ————————————— [ Character Analysis ] —————————————
 Letters: {total_number_of_letters} ({total_number_of_letters_in_percent})
 Digits: {total_number_of_digits} ({total_number_of_digits_in_percent})
