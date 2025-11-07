@@ -1,5 +1,6 @@
 # Import necessary packages
 from datetime import datetime
+import shutil
 import os
 import json
 
@@ -13,7 +14,8 @@ def export_results():
     # A Dictionary to store the templates before exporting
     templates = {
         "txt": [],
-        "md": []
+        "md": [],
+        "html": []
     }
 
     # A dictionary for placeholders:
@@ -86,12 +88,16 @@ def export_results():
                     if placeholder in current_line:
                         # Gets the value from data dictionary using the path that is stored in placeholder dictionary
                         value = get_value_from_data(data, placeholders[placeholder])
+
+                        if file_type == 'html':
+                            readability_score_in_percent = round(data['word_analysis']['read_ability_score'] / 55 * 100, 2)
+                            current_line = current_line.replace('{read_ability_score_in_percent}', f'{readability_score_in_percent}%')
                         
                         # Checks if the value is a dictionary
                         if type(value) == dict:
 
                             # Rewrites the value as a string for exporting
-                            value = rewrite_top_entries(value) 
+                            value = rewrite_top_entries(value, file_type) 
 
                             # Replaces the placeholder
                             current_line = current_line.replace(f"{{{placeholder}}}", f"{value}")
@@ -117,6 +123,11 @@ def export_results():
     for file_type in templates:
         with open(f'{export_path}/{data['file_name']}.{file_type}', 'w', encoding='utf-8') as file:
             file.writelines(templates[file_type])
+
+
+    # Copies the JSON and HTML files from temp and templates
+    shutil.copy("./src/temp/analyzed.json", f'{export_path}/results.json')
+
 
 
     print(f"Successfully exported results! You will be able to find them at: {export_path}/")
@@ -210,15 +221,28 @@ def get_value_from_data(data: dict, path: str):
     return current_data
 
 # A function that handles rewriting the top entires dictionary for it to look good in the format
-def rewrite_top_entries(dictionary: dict) -> str:
+def rewrite_top_entries(dictionary: dict, file_type: str = 'txt') -> str:
     # Stores each value of the dictionary with specific format
     lst = [] # -> ["1. ~~~~", "2.~~~"]
 
     # Read key by key from dictionary and saves the index
     for i, key in enumerate(dictionary):
         
-        # Checks if the key is a digit. This is used to know if the dictionary is for sentence_length_distribution
-        lst.append(f"{i +1:>4}. {key:<35} {dictionary[key]}")
+        # Checks what type of format we should use for re-writing
+        if file_type == 'html':
+            style = f"""<div class="flex items-center gap-3 mt-3">
+                            <span class="text-sm font-bold text-slate-400 w-6">{i + 1}</span>
+                            <div class="flex-1">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm font-medium text-slate-700">{key}</span>
+                                    <span class="text-sm font-bold text-primary">{dictionary[key]}</span>
+                                </div>
+                            </div>
+                        </div>
+                    """
+            lst.append(style)
+        else:
+            lst.append(f"{i +1:>4}. {key:<35} {dictionary[key]}")
     
     # Converts the list to a string and each value ends with \n then returns it
     return "\n".join(lst) # -> "1. ~~~\n2. ~~~~\n" 
